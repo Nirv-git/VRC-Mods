@@ -1,40 +1,78 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<AssemblyName>InstanceHistory</AssemblyName>
-		<RootNamespace>InstanceHistory</RootNamespace>
-	</PropertyGroup>
+    <PropertyGroup>
+        <AssemblyName>InstanceHistory</AssemblyName>
+        <RootNamespace>InstanceHistory</RootNamespace>
+        <LangVersion>9.0</LangVersion>
+        <TargetFramework>net472</TargetFramework>
+        <VRChatPath>$(MSBuildThisFileDirectory)../VRChat</VRChatPath>
+        <VRChatPath Condition="Exists('C:/Program Files (x86)/Steam/steamapps/common/VRChat/')">C:/Program Files (x86)/Steam/steamapps/common/VRChat/</VRChatPath>
+        <VRChatPath Condition="Exists('$(HOME)/.steam/steam/steamapps/common/VRChat/')">$(HOME)/.steam/steam/steamapps/common/VRChat/</VRChatPath>
+    </PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<OutputPath></OutputPath>
-	</PropertyGroup>
+    <ItemGroup>
+        <None Remove="MenuIcon.png" />
+        <None Remove="ItemIcon.png" />
+        <None Remove="UpArrow.png" />
+        <None Remove="DownArrow.png" />
+    </ItemGroup>
 
-	<ItemGroup>
-		<Reference Include="Newtonsoft.Json">
-		  <HintPath>$(VRChatPath)MelonLoader\Managed\Newtonsoft.Json.dll</HintPath>
-		</Reference>
-		<Reference Include="UIExpansionKit">
-		  <HintPath>$(VRChatPath)Mods\UIExpansionKit.dll</HintPath>
-		</Reference>
-		<Reference Include="UnityEngine.TextRenderingModule">
-		  <HintPath>$(VRChatPath)MelonLoader\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
-		</Reference>
-		<Reference Include="UnityEngine.UI">
-		  <HintPath>$(VRChatPath)MelonLoader\Managed\UnityEngine.UI.dll</HintPath>
-		</Reference>
-		<Reference Include="VRCCore-Standalone">
-			<HintPath>$(VRChatPath)MelonLoader\Managed\VRCCore-Standalone.dll</HintPath>
-		</Reference>
-		<Reference Include="VRChatUtilityKit">
-		  <HintPath>$(VRChatPath)Mods\VRChatUtilityKit.dll</HintPath>
-		</Reference>
-		<Reference Include="VRCSDKBase">
-		  <HintPath>$(VRChatPath)MelonLoader\Managed\VRCSDKBase.dll</HintPath>
-		</Reference>
-	</ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Include="MenuIcon.png" />
+        <EmbeddedResource Include="ItemIcon.png" />
+        <EmbeddedResource Include="UpArrow.png" />
+        <EmbeddedResource Include="DownArrow.png" />
+    </ItemGroup>
 
-	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<Copy SourceFiles="$(OutDir)InstanceHistory.dll" DestinationFolder="$(VRChatPath)Mods" />
-	</Target>
+    <ItemGroup>
+        <Reference Include="Assembly-CSharp">
+            <HintPath>$(VRChatPath)MelonLoader\Managed\Assembly-CSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="MelonLoader">
+            <HintPath>$(VRChatPath)MelonLoader\MelonLoader.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2Cppmscorlib">
+            <HintPath>$(VRChatPath)MelonLoader\Managed\Il2Cppmscorlib.dll</HintPath>
+        </Reference>
+        <Reference Include="UnhollowerBaseLib">
+            <HintPath>$(VRChatPath)MelonLoader\Managed\UnhollowerBaseLib.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>$(VRChatPath)MelonLoader\Managed\UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
+        <Reference Include="Newtonsoft.Json">
+            <HintPath>$(VRChatPath)MelonLoader\Managed\Newtonsoft.Json.dll</HintPath>
+        </Reference>
+        <Reference Include="UIExpansionKit">
+            <HintPath>$(VRChatPath)Mods\UIExpansionKit.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TextRenderingModule">
+            <HintPath>$(VRChatPath)MelonLoader\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.TextMeshPro">
+            <HintPath>$(VRChatPath)MelonLoader\Managed\Unity.TextMeshPro.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UI">
+            <HintPath>$(VRChatPath)MelonLoader\Managed\UnityEngine.UI.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ImageConversion">
+            <HintPath>$(VRChatPath)MelonLoader\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+        </Reference>
+        <Reference Include="VRCCore-Standalone">
+            <HintPath>$(VRChatPath)MelonLoader\Managed\VRCCore-Standalone.dll</HintPath>
+        </Reference>
+        <Reference Include="VRChatUtilityKit">
+            <HintPath>$(VRChatPath)Mods\VRChatUtilityKit.dll</HintPath>
+        </Reference>
+        <Reference Include="VRCSDKBase">
+            <HintPath>$(VRChatPath)MelonLoader\Managed\VRCSDKBase.dll</HintPath>
+        </Reference>
+        <Reference Include="VRC.UI.Elements">
+            <HintPath>$(VRChatPath)MelonLoader\Managed\VRC.UI.Elements.dll</HintPath>
+        </Reference>
+    </ItemGroup>
 
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+        <Copy SourceFiles="$(OutDir)InstanceHistory.dll" DestinationFolder="$(VRChatPath)Mods" />
+    </Target>
 </Project>

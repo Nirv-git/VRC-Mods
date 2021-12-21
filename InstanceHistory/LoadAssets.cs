@@ -1,27 +1,52 @@
-﻿using MelonLoader;
+﻿using System.IO;
+using MelonLoader;
 using UnityEngine;
-using System.IO;
 
 
 namespace InstanceHistory
 {
     class LoadAssets
     {
-        public static Sprite instanceHistoryIcon, UpArrow, DownArrow, Trans;
-        public static void loadAssets()
+        private static Sprite _menuIcon, _upArrow, _downArrow, _item;
+        public static Sprite MenuIcon
         {
-            instanceHistoryIcon = LoadEmbeddedImages("instanceHistoryIcon.png");
-            UpArrow = LoadEmbeddedImages("UpArrow.png");
-            DownArrow = LoadEmbeddedImages("DownArrow.png");
-            Trans = LoadEmbeddedImages("Trans.png");
+            get
+            {
+                if (_menuIcon == null) _menuIcon = LoadEmbeddedImage("MenuIcon.png");
+                return _menuIcon;
+            }
+        }
+        public static Sprite UpArrow
+        {
+            get
+            {
+                if (_upArrow == null) _upArrow = LoadEmbeddedImage("UpArrow.png");
+                return _upArrow;
+            }
+        }
+        public static Sprite DownArrow
+        {
+            get
+            {
+                if (_downArrow == null) _downArrow = LoadEmbeddedImage("DownArrow.png");
+                return _downArrow;
+            }
+        }
+        public static Sprite Item
+        {
+            get
+            {
+                if (_item == null) _item = LoadEmbeddedImage("ItemIcon.png");
+                return _item;
+            }
         }
 
-        private static Sprite LoadEmbeddedImages(string imageName)
+        private static Sprite LoadEmbeddedImage(string imageName)
         {
             try
             {
                 //Load image into Texture
-                using var assetStream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("InstanceHistory.Images." + imageName);
+                using var assetStream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("InstanceHistory." + imageName);
                 using var tempStream = new MemoryStream((int)assetStream.Length);
                 assetStream.CopyTo(tempStream);
                 var Texture2 = new Texture2D(2, 2);

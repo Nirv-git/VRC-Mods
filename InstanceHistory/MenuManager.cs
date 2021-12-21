@@ -60,9 +60,6 @@ namespace InstanceHistory
 
         public static void UiInit()
         {
-            MelonLogger.Msg("Loading UI Assets...");
-            LoadAssets.loadAssets();
-
             MelonLogger.Msg("Loading UI...");
             //worlds = UiManager.QMStateController.transform.Find("Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_QuickLinks/Button_Worlds/Icon").GetComponent<Image>().sprite;
 
@@ -73,7 +70,7 @@ namespace InstanceHistory
             openButton.GetComponent<Button>().onClick = new Button.ButtonClickedEvent();
             openButton.GetComponent<Button>().onClick.AddListener(butAction);
             openButton.GetComponent<VRC.UI.Elements.Tooltips.UiTooltip>().field_Public_String_0 = "Instance History";
-            openButton.GetComponentInChildren<Image>().overrideSprite = LoadAssets.instanceHistoryIcon;
+            openButton.GetComponentInChildren<Image>().overrideSprite = LoadAssets.MenuIcon;
 
             openButton.gameObject.SetActive(!(InstanceHistoryMod.HasUIX && Config.useUIX.Value));
             Config.openButtonX.OnValueChanged += OnPositionChange;
@@ -96,7 +93,7 @@ namespace InstanceHistory
                              pageNumLabel.gameObject.transform.Find("Text_H1").localPosition = new Vector3(0f, 40f, 0f); break;
                     case 16: new Label($"Blank", "subtext", "Blank", (butt) => allButtons.Add(butt)); break;
                     default:
-                        buttons[b] = new SingleButton(null, LoadAssets.Trans, "Placeholder", $"InstanceHistoryButton-{b}", "tooltip", (butt) => allButtons.Add(butt));
+                        buttons[b] = new SingleButton(null, LoadAssets.Item, "Placeholder", $"InstanceHistoryButton-{b}", "tooltip", (butt) => allButtons.Add(butt));
                         buttons[b].gameObject.transform.Find("Text_H4").localPosition = new Vector3(0f, -20f, 0f);
                         b++;
                         break;
