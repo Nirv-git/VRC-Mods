@@ -3,6 +3,11 @@
     <PropertyGroup>
         <AssemblyName>InstanceHistory</AssemblyName>
         <RootNamespace>InstanceHistory</RootNamespace>
+        <LangVersion>9.0</LangVersion>
+        <TargetFramework>net472</TargetFramework>
+        <VRChatPath>$(MSBuildThisFileDirectory)../VRChat</VRChatPath>
+        <VRChatPath Condition="Exists('C:/Program Files (x86)/Steam/steamapps/common/VRChat/')">C:/Program Files (x86)/Steam/steamapps/common/VRChat/</VRChatPath>
+        <VRChatPath Condition="Exists('$(HOME)/.steam/steam/steamapps/common/VRChat/')">$(HOME)/.steam/steam/steamapps/common/VRChat/</VRChatPath>
     </PropertyGroup>
 
     <ItemGroup>
@@ -20,6 +25,21 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Reference Include="Assembly-CSharp">
+            <HintPath>$(VRChatPath)MelonLoader\Managed\Assembly-CSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="MelonLoader">
+            <HintPath>$(VRChatPath)MelonLoader\MelonLoader.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2Cppmscorlib">
+            <HintPath>$(VRChatPath)MelonLoader\Managed\Il2Cppmscorlib.dll</HintPath>
+        </Reference>
+        <Reference Include="UnhollowerBaseLib">
+            <HintPath>$(VRChatPath)MelonLoader\Managed\UnhollowerBaseLib.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>$(VRChatPath)MelonLoader\Managed\UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
         <Reference Include="Newtonsoft.Json">
             <HintPath>$(VRChatPath)MelonLoader\Managed\Newtonsoft.Json.dll</HintPath>
         </Reference>
